@@ -19,4 +19,4 @@ RUN yum makecache && \
 VOLUME /var/lib/transmission/
 EXPOSE 9091/tcp 51413/tcp 51413/udp
 WORKDIR /var/lib/transmission/
-ENTRYPOINT ["/usr/bin/transmission-daemon","-f","--log-error"]
+ENTRYPOINT ["transmission-daemon", "--foreground", "--config-dir", "/var/lib/transmission-daemon/", "--log-error"]
