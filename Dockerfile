@@ -16,7 +16,7 @@ RUN yum makecache && \
     yum install -y transmission-daemon && \
     yum clean all
 
-VOLUME /var/lib/transmission/
+VOLUME ["/var/lib/transmission-daemon"]
 EXPOSE 9091/tcp 51413/tcp 51413/udp
-WORKDIR /var/lib/transmission/
-ENTRYPOINT ["transmission-daemon", "--foreground", "--config-dir", "/var/lib/transmission-daemon/", "--log-error"]
+WORKDIR /var/lib/transmission-daemon
+ENTRYPOINT ["transmission-daemon", "--foreground", "--config-dir", "/var/lib/transmission-daemon/info", "--log-error"]
