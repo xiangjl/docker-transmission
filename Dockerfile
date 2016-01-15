@@ -14,9 +14,14 @@ RUN yum makecache && \
     yum install -y epel-release && \
     yum makecache && \
     yum install -y transmission-daemon && \
-    yum clean all
+    yum clean all && \
+    mkdir -p /docker/ && \
+    mkdir -p /downloads/
 
-VOLUME ["/var/lib/transmission-daemon"]
+COPY ./config.tar.gz /docker/
+COPY ./startup.sh /docker/
+
+VOLUME ["/var/lib/transmission/","/downloads/"]
 EXPOSE 9091/tcp 51413/tcp 51413/udp
-WORKDIR /var/lib/transmission-daemon
-ENTRYPOINT ["transmission-daemon", "--foreground", "--config-dir", "/var/lib/transmission-daemon/info", "--log-error"]
+WORKDIR /var/lib/transmission/
+ENTRYPOINT ["/docker/startup.sh"]
