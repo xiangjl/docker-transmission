@@ -6,8 +6,8 @@ FROM centos:latest
 MAINTAINER XiangJL xjl-tommy@qq.com
 
 # add repos
-RUN curl http://mirrors.aliyun.com/repo/Centos-7.repo > /etc/yum.repos.d/CentOS-Base.repo && \
-     curl http://mirrors.aliyun.com/repo/epel-7.repo > /etc/yum.repos.d/epel.repo
+# RUN curl http://mirrors.aliyun.com/repo/Centos-7.repo > /etc/yum.repos.d/CentOS-Base.repo && \
+#     curl http://mirrors.aliyun.com/repo/epel-7.repo > /etc/yum.repos.d/epel.repo
 
 # install software
 RUN yum makecache && \
