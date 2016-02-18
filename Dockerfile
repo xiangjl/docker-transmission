@@ -20,10 +20,9 @@ RUN yum makecache && \
 
 COPY ./config.tar.gz /docker/
 COPY ./startup.sh /docker/
-#COPY ./transmission-control-full.tar.gz /docker/
+COPY ./transmission-control-full.tar.gz /docker/
 
-RUN curl https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz > /docker/transmission-control-full.tar.gz && \ 
-    mv /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
+RUN mv /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
     tar zxvf /docker/transmission-control-full.tar.gz -C /usr/share/transmission/
 
 USER transmission
