@@ -15,11 +15,16 @@ RUN yum makecache && \
     yum makecache && \
     yum install -y transmission-daemon && \
     yum clean all && \
-    mkdir -p /docker/ /downloads/ && \
-    chown transmission:transmission /downloads/
+    mkdir -p /docker/ /downloads/ /storage/ && \
+    chown transmission:transmission /downloads/ /storage/
 
 COPY ./config.tar.gz /docker/
 COPY ./startup.sh /docker/
+#COPY ./transmission-control-full.tar.gz /docker/
+
+RUN curl https://github.com/ronggang/transmission-web-control/raw/master/release/transmission-control-full.tar.gz > /docker/transmission-control-full.tar.gz && \ 
+    mv /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
+    tar zxvf /docker/transmission-control-full.tar.gz -C /usr/share/transmission/
 
 USER transmission
 
