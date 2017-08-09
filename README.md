@@ -1,4 +1,4 @@
-# 基于Centos的transmission容器
+# 基于CentOS的Transmission容器
 
 请使用以下命令使用容器：
 
@@ -9,11 +9,11 @@ cd docker-transmission/
 
 docker build -t xiangjl/transmission .
 
-docker run -i -t -d --name transmission \
+docker run -d --name transmission \
 -p 80:9091 -p 9091:9091 -p 51413:51413/tcp -p 51413:51413/udp \
 -v /data/transmission/:/var/lib/transmission/ -v /data/transmission/downloads:/downloads \
 --restart=always \
-xiangjl/transmission
+xiangjl/transmission -a "*" -T -w "/downloads"
 ```
 
 更多信息请参考：
