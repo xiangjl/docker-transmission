@@ -11,7 +11,7 @@ docker build -t xiangjl/transmission .
 
 docker run -d --name transmission \
 -p 80:9091 -p 9091:9091 -p 51413:51413/tcp -p 51413:51413/udp \
--v /data/transmission/:/var/lib/transmission/ -v /data/transmission/downloads:/downloads \
+-v /data/transmission/:/etc/transmission/ -v /data/transmission/downloads:/downloads \
 --restart=always \
 xiangjl/transmission -a "*" -T -w "/downloads"
 ```

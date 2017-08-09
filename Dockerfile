@@ -26,5 +26,4 @@ USER transmission
 VOLUME ["/etc/transmission/","/downloads/"]
 EXPOSE 9091/tcp 51413/tcp 51413/udp
 
-#ENTRYPOINT ["/docker/startup.sh"]
 ENTRYPOINT ["/usr/bin/transmission-daemon","-f","--log-error","--config-dir","/etc/transmission/"]
