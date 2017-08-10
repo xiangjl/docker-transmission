@@ -13,7 +13,8 @@ docker run -d --name transmission \
 -p 80:9091 -p 9091:9091 -p 51413:51413/tcp -p 51413:51413/udp \
 -v /data/transmission/:/etc/transmission/ -v /data/transmission/downloads:/downloads \
 --restart=always \
-xiangjl/transmission -a "*" -T -w "/downloads"
+xiangjl/transmission \
+--allowed "*" --no-auth
 ```
 
 更多信息请参考：

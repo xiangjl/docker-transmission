@@ -11,19 +11,14 @@ RUN yum makecache && \
     yum makecache && \
     yum install -y transmission-daemon && \
     yum clean all && \
-    mkdir -p /etc/transmission /docker /downloads && \
-    chown transmission:transmission /etc/transmission /downloads
+    mkdir -p /transmission /docker /downloads
 
-COPY ./settings.json /docker
-COPY ./startup.sh /docker
 COPY ./transmission-control-full.tar.gz /docker
 
 RUN mv /usr/share/transmission/web/index.html /usr/share/transmission/web/index.original.html && \
     tar zxvf /docker/transmission-control-full.tar.gz -C /usr/share/transmission/
 
-USER transmission
-
-VOLUME ["/etc/transmission/","/downloads/"]
+VOLUME ["/transmission","/downloads"]
 EXPOSE 9091/tcp 51413/tcp 51413/udp
 
-ENTRYPOINT ["/usr/bin/transmission-daemon","-f","--log-error","--config-dir","/etc/transmission/"]
+ENTRYPOINT ["/usr/bin/transmission-daemon","--foreground","--log-error","--config-dir","/transmission","--download-dir","/downloads"]
