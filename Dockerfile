@@ -5,7 +5,7 @@
 FROM centos:7
 MAINTAINER XiangJL xjl-tommy@qq.com
 
-ENV VERSION=1.6.0-beta2
+ENV VERSION=v1.6.1-update1
 
 # install software
 RUN yum makecache && \
